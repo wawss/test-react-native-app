@@ -1,4 +1,4 @@
-import React from "react";
+﻿import React from "react";
 import {
     View,
     Text,
@@ -48,7 +48,7 @@ export default class Cakes extends React.Component {
                     english: 'dincakedd'
                 }, {
                     imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
+                    name: '迪士尼蛋糕1',
                     english: 'dincakedd'
                 }, {
                     imageUri: require('../images/p-test.png'),
