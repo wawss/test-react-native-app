@@ -2,14 +2,16 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, Button} from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import CakeDetail from './CakeDetail';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 class CakeList extends React.Component {
   static navigationOptions = {
     title: '所有蛋糕',
     headerStyle: {
       backgroundColor: '#f4511e',
-    },
+    }
   };
+
   render() {
     return (
       <View>
@@ -24,6 +26,11 @@ class CakeList extends React.Component {
 }
 
 export default class App extends React.Component {
+  static navigationOptions = {
+    tabBarIcon: ({focused, tintColor}) => {
+      return <Image source={require('../images/icon-cake.png')}/>
+    }
+  };
   render() {
     return <RootStack/>;
   }
