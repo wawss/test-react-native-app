@@ -6,6 +6,7 @@ import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
 import {TabNavigator} from 'react-navigation';
 import {deviceWidth, deviceHeight,setSpText} from "./src/tools/ScreenUtil";
+import {activeColor,defaultColor,fontSize, iconSize, TabBarStyle,tabBarOptions} from "./src/config/TabBarConfig";
 
 
 export default TabNavigator({
@@ -23,11 +24,5 @@ export default TabNavigator({
   }
 }, {
   tabBarPosition: 'bottom',
-  tabBarOptions: {
-    style: {
-      backgroundColor: 'white',
-      paddingTop:4,
-      paddingBottom:4,
-    }
-  }
+  tabBarOptions: tabBarOptions
 });

@@ -1,25 +1,31 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, Button} from 'react-native';
-import {StackNavigator} from 'react-navigation';
+import { View, Text, StyleSheet, Image, Button, StatusBar } from 'react-native';
+import { StackNavigator } from 'react-navigation';
 import CakeDetail from './CakeDetail';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { activeColor, defaultColor, fontSize, iconSize, TabBarStyle } from "../config/TabBarConfig";
+import Cakes from "../components/Cakes";
 
 class CakeList extends React.Component {
   static navigationOptions = {
-    title: '所有蛋糕',
+    title: '迪士尼蛋糕',
     headerStyle: {
-      backgroundColor: '#f4511e',
+      backgroundColor: '#E95098',
+    },
+    headerTitleStyle: {
+      color: 'white'
     }
   };
 
   render() {
     return (
-      <View>
-        <Text>蛋糕列表</Text>
-        <Button title='详细' onPress={() => this.props.navigation.navigate('CakeDetail',{
-          itemId: 86,
-          title: '芒果芝士',
-        })}></Button>
+
+      <View style={styles.container}>
+        <StatusBar
+          backgroundColor="blue"
+          barStyle="light-content"
+        />
+        <Cakes />
       </View>
     );
   }
@@ -27,12 +33,24 @@ class CakeList extends React.Component {
 
 export default class App extends React.Component {
   static navigationOptions = {
-    tabBarIcon: ({focused, tintColor}) => {
-      return <Image source={require('../images/icon-cake.png')}/>
+    tabBarIcon: ({ focused, tintColor }) => {
+      // return <Image source={require('../images/icon-cake.png')} style={{width:23,height:23}}/>
+      return <Ionicons
+        name='ios-pizza'
+        size={iconSize}
+        color={focused
+          ? activeColor
+          : defaultColor} />
+    },
+    tabBarLabel: ({ focused, tintColor }) => {
+      return <Text
+        style={focused
+          ? TabBarStyle.activeMenuStyle
+          : TabBarStyle.defaultMenuStyle}>蛋糕</Text>
     }
   };
   render() {
-    return <RootStack/>;
+    return <RootStack />;
   }
 }
 const RootStack = StackNavigator({
@@ -42,4 +60,13 @@ const RootStack = StackNavigator({
   CakeDetail: {
     screen: CakeDetail
   }
-}, {initialRouteName: 'CakeList'});
+}, { initialRouteName: 'CakeList' });
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#EDFBFF'
+  }
+});
+
+
