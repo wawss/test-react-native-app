@@ -10,10 +10,17 @@ import {
     Dimensions,
     TouchableHighlight
 } from 'react-native';
-import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/ScreenUtil";
+import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
+import {getProducts} from "../data/Data";
+
 export default class Cakes extends React.Component {
     constructor(props) {
         super(props);
+
+        getProducts((res) => {
+            alert(JSON.stringify(res));
+        });
+
         this.state = {
             dataSource: [
                 {
@@ -64,14 +71,14 @@ export default class Cakes extends React.Component {
                 ? styles.itemEven
                 : styles.itemOdd;
         };
-        this.renderItem = ({ item, index }) => {
+        this.renderItem = ({item, index}) => {
             return (
                 <TouchableHighlight underlayColor='red'>
                     <View
                         style={[
-                            styles.item, this.itemStyle(index)
-                        ]}>
-                        <Image source={item.imageUri} style={styles.itemImg} />
+                        styles.item, this.itemStyle(index)
+                    ]}>
+                        <Image source={item.imageUri} style={styles.itemImg}/>
                         <View style={styles.viewForItemName}>
                             <Text style={styles.styleForText}>{item.name}</Text>
                             <Text style={styles.styleForText}>{item.english}</Text>
@@ -82,9 +89,9 @@ export default class Cakes extends React.Component {
         };
         this._keyExtractor = (item, index) => index;
         this._header = () => {
-            return (<View>
-
-            </View>);
+            return (
+                <View></View>
+            );
         };
     }
     render() {
@@ -94,7 +101,8 @@ export default class Cakes extends React.Component {
                     <Text style={styles.titleDesc}>全&nbsp;部&nbsp;产&nbsp;品</Text>
                     <Text style={styles.engTitleDesc}>All Products</Text>
                 </View>
-                <FlatList  style={styles.ListView}
+                <FlatList
+                    style={styles.ListView}
                     numColumns={2}
                     keyExtractor={this._keyExtractor}
                     data={this.state.dataSource}
@@ -104,10 +112,10 @@ export default class Cakes extends React.Component {
     };
 
 }
-var { height, width } = Dimensions.get('window');
+var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
-flex:1
+        flex: 1
     },
     titleBox: {
         marginLeft: (deviceWidth * 0.06),
@@ -118,7 +126,7 @@ flex:1
         justifyContent: 'flex-start',
         alignItems: 'flex-end',
         borderBottomWidth: 1,
-        borderBottomColor: '#7bc2d5',
+        borderBottomColor: '#7bc2d5'
     },
     titleDesc: {
         color: '#686868',
@@ -130,7 +138,7 @@ flex:1
     },
     ListView: {
         paddingLeft: (deviceWidth * 0.06),
-        paddingRight: (deviceWidth * 0.06),
+        paddingRight: (deviceWidth * 0.06)
     },
     item: {
         'display': 'flex',
@@ -138,7 +146,7 @@ flex:1
         width: (deviceWidth * 0.44),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: (deviceWidth * 0.04),
+        paddingTop: (deviceWidth * 0.04)
     },
     viewForItemName: {
         justifyContent: 'center',
