@@ -16,69 +16,41 @@ import {getProducts} from "../data/Data";
 export default class Cakes extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            dataSource: []
+        };
 
         getProducts((res) => {
-            alert(JSON.stringify(res));
+            fastData = JSON.parse(res._bodyInit);
+            //构建数组
+            for (let cakeName in fastData.list) {
+                this
+                    .state
+                    .dataSource
+                    .push({name: cakeName, info: fastData.list[cakeName]});
+            }
+            this.state.dataSource = fastData.list;
+            //alert(fastData.count); alert(JSON.stringify(this.state.dataSource));
         });
 
-        this.state = {
-            dataSource: [
-                {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕22',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕1',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }, {
-                    imageUri: require('../images/p-test.png'),
-                    name: '迪士尼蛋糕',
-                    english: 'dincakedd'
-                }
-            ]
-        };
         this.itemStyle = (index) => {
             return index % 2 > 0
                 ? styles.itemEven
                 : styles.itemOdd;
         };
         this.renderItem = ({item, index}) => {
+            alert(JSON.stringify(item));
             return (
                 <TouchableHighlight underlayColor='red'>
                     <View
                         style={[
                         styles.item, this.itemStyle(index)
                     ]}>
-                        <Image source={item.imageUri} style={styles.itemImg}/>
+                        <Image
+                            source={{
+                            uri: 'http://res.cakeland.com/item/' + item.name + '/w_200/' + item.info.ext.image[0]
+                        }}
+                            style={styles.itemImg}/>
                         <View style={styles.viewForItemName}>
                             <Text style={styles.styleForText}>{item.name}</Text>
                             <Text style={styles.styleForText}>{item.english}</Text>
@@ -146,15 +118,17 @@ const styles = StyleSheet.create({
         width: (deviceWidth * 0.44),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: (deviceWidth * 0.04)
+        paddingTop: (deviceWidth * 0.04),
     },
     viewForItemName: {
+        width: (deviceWidth * 0.44),
+        height: (deviceWidth * 0.15),
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
     styleForText: {
         color: '#686868',
-        fontSize: setSpText(16)
+        fontSize: setSpText(14)
     },
     itemOdd: {
         // marginRight: (deviceWidth * 0.02)
