@@ -26,7 +26,7 @@ export default class Home extends React.Component {
     return (
       <View style={styles.container}>
         <SwiperBanner />
-        <Cakes />
+        <Cakes navigation={this.props.navigation} />
       </View>
     );
   }

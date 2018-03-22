@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
 import {getProducts} from "../data/Data";
+import {StackNavigator} from 'react-navigation';
 
 export default class Cakes extends React.Component {
     constructor(props) {
@@ -38,10 +39,21 @@ export default class Cakes extends React.Component {
                 ? styles.itemEven
                 : styles.itemOdd;
         };
-        this.renderItem = ({item, index}) => {
+        this._onPressButton = (item) => {
+
             alert(JSON.stringify(item));
+        };
+        this.renderItem = ({item, index}) => {
+            // alert(JSON.stringify(item));
             return (
-                <TouchableHighlight underlayColor='red'>
+                <TouchableHighlight
+                    underlayColor='red'
+                    onPress={() => {
+                    this
+                        .props
+                        .navigation
+                        .navigate('CakeDetail', {itemName: item.name});
+                }}>
                     <View
                         style={[
                         styles.item, this.itemStyle(index)
@@ -53,7 +65,7 @@ export default class Cakes extends React.Component {
                             style={styles.itemImg}/>
                         <View style={styles.viewForItemName}>
                             <Text style={styles.styleForText}>{item.name}</Text>
-                            <Text style={styles.styleForText}>{item.english}</Text>
+                            <Text style={styles.styleForText}>{item.info.ext['英文名称']}</Text>
                         </View>
                     </View>
                 </TouchableHighlight>
@@ -118,13 +130,13 @@ const styles = StyleSheet.create({
         width: (deviceWidth * 0.44),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: (deviceWidth * 0.04),
+        paddingTop: (deviceWidth * 0.04)
     },
     viewForItemName: {
         width: (deviceWidth * 0.44),
         height: (deviceWidth * 0.15),
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'center'
     },
     styleForText: {
         color: '#686868',

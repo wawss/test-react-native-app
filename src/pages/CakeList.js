@@ -16,7 +16,6 @@ class CakeList extends React.Component {
       color: 'white'
     }
   };
-
   render() {
     return (
 
@@ -25,7 +24,7 @@ class CakeList extends React.Component {
           backgroundColor="blue"
           barStyle="light-content"
         />
-        <Cakes />
+        <Cakes navigation={this.props.navigation} />
       </View>
     );
   }
@@ -50,7 +49,7 @@ export default class App extends React.Component {
     }
   };
   render() {
-    return <RootStack />;
+    return <RootStack navigation={this.navigation} />;
   }
 }
 const RootStack = StackNavigator({
