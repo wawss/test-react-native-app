@@ -5,21 +5,29 @@ import CakeList from "./src/pages/CakeList";
 import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
 import {TabNavigator} from 'react-navigation';
-import {deviceWidth, deviceHeight,setSpText} from "./src/tools/ScreenUtil";
-import {activeColor,defaultColor,fontSize, iconSize, TabBarStyle,tabBarOptions} from "./src/config/TabBarConfig";
-
+import {deviceWidth, deviceHeight, setSpText} from "./src/tools/ScreenUtil";
+import {
+  activeColor,
+  defaultColor,
+  fontSize,
+  iconSize,
+  TabBarStyle,
+  tabBarOptions
+} from "./src/config/TabBarConfig";
 
 export default TabNavigator({
-  '首页': {
+  'index': {
     screen: Index
   },
-  '蛋糕': {
-    screen: CakeList
+  'cakeList': {
+    screen: CakeList,
+    navigationOptions: (navigation) => {
+    }
   },
-  '购物车': {
+  'cart': {
     screen: Cart
   },
-  '我的': {
+  'me': {
     screen: Me
   }
 }, {

@@ -52,7 +52,9 @@ export default class Cakes extends React.Component {
                     this
                         .props
                         .navigation
-                        .navigate('CakeDetail', {itemName: item.name});
+                        .navigate('CakeDetail', {
+                            itemName: item.name
+                        });
                 }}>
                     <View
                         style={[

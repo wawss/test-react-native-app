@@ -24,6 +24,7 @@ export default class SwiperBanner extends React.Component {
 };
 // banner原图尺寸
 const imageSize={width:640,height:233};
+
 var styles = StyleSheet.create({
     wrapper: {
         width: deviceWidth,
@@ -48,4 +49,4 @@ var styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold'
     }
-})
+});
