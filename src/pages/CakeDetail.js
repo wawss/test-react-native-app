@@ -30,11 +30,10 @@ export default class CakeDetail extends React.Component {
         return {itemInfo: resData.data, itemImages: resData.data.ext.image}
       });
     });
-    this.props.screenProps.hideTabNav();
+
   };
 
   render() {
-    //  setTimeout(() => {}, 2000);   alert(JSON.stringify(this.state.itemInfo));
     return (
       <ScrollView>
         <View style={styles.body}>

@@ -1,11 +1,12 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Index from "./src/pages/Index";
 import CakeList from "./src/pages/CakeList";
+import CakeDetail from "./src/pages/CakeDetail";
 import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
-import {TabNavigator} from 'react-navigation';
-import {deviceWidth, deviceHeight, setSpText} from "./src/tools/ScreenUtil";
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { deviceWidth, deviceHeight, setSpText } from "./src/tools/ScreenUtil";
 import {
   activeColor,
   defaultColor,
@@ -15,14 +16,13 @@ import {
   tabBarOptions
 } from "./src/config/TabBarConfig";
 
-export default TabNavigator({
+
+const TabNav = TabNavigator({
   'index': {
     screen: Index
   },
   'cakeList': {
     screen: CakeList,
-    navigationOptions: (navigation) => {
-    }
   },
   'cart': {
     screen: Cart
@@ -31,6 +31,15 @@ export default TabNavigator({
     screen: Me
   }
 }, {
-  tabBarPosition: 'bottom',
-  tabBarOptions: tabBarOptions
+    tabBarPosition: 'bottom',
+    tabBarOptions: tabBarOptions
+  });
+
+export default StackNavigator({
+  tabNav: {
+    screen: TabNav,
+  },
+  cakeDetail: { screen: CakeDetail }
 });
+
+

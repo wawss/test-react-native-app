@@ -10,9 +10,9 @@ import {
     Dimensions,
     TouchableHighlight
 } from 'react-native';
-import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
-import {getProducts} from "../data/Data";
-import {StackNavigator} from 'react-navigation';
+import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/ScreenUtil";
+import { getProducts } from "../data/Data";
+import { StackNavigator, NavigationActions } from 'react-navigation';
 
 export default class Cakes extends React.Component {
     constructor(props) {
@@ -20,7 +20,6 @@ export default class Cakes extends React.Component {
         this.state = {
             dataSource: []
         };
-
         getProducts((res) => {
             fastData = JSON.parse(res._bodyInit);
             //构建数组
@@ -28,10 +27,9 @@ export default class Cakes extends React.Component {
                 this
                     .state
                     .dataSource
-                    .push({name: cakeName, info: fastData.list[cakeName]});
+                    .push({ name: cakeName, info: fastData.list[cakeName] });
             }
             this.state.dataSource = fastData.list;
-            //alert(fastData.count); alert(JSON.stringify(this.state.dataSource));
         });
 
         this.itemStyle = (index) => {
@@ -40,31 +38,26 @@ export default class Cakes extends React.Component {
                 : styles.itemOdd;
         };
         this._onPressButton = (item) => {
-
-            alert(JSON.stringify(item));
+            const navigateAction = NavigationActions.navigate({
+                routeName: 'cakeDetail',
+                params: { itemName: item.name },
+            });
+            this.props.navigation.dispatch(navigateAction);
         };
-        this.renderItem = ({item, index}) => {
-            // alert(JSON.stringify(item));
+        this.renderItem = ({ item, index }) => {
             return (
                 <TouchableHighlight
                     underlayColor='red'
-                    onPress={() => {
-                    this
-                        .props
-                        .navigation
-                        .navigate('CakeDetail', {
-                            itemName: item.name
-                        });
-                }}>
+                    onPress={() => { this._onPressButton(item) }}>
                     <View
                         style={[
-                        styles.item, this.itemStyle(index)
-                    ]}>
+                            styles.item, this.itemStyle(index)
+                        ]}>
                         <Image
                             source={{
-                            uri: 'http://res.cakeland.com/item/' + item.name + '/w_200/' + item.info.ext.image[0]
-                        }}
-                            style={styles.itemImg}/>
+                                uri: 'http://res.cakeland.com/item/' + item.name + '/w_200/' + item.info.ext.image[0]
+                            }}
+                            style={styles.itemImg} />
                         <View style={styles.viewForItemName}>
                             <Text style={styles.styleForText}>{item.name}</Text>
                             <Text style={styles.styleForText}>{item.info.ext['英文名称']}</Text>
@@ -79,6 +72,7 @@ export default class Cakes extends React.Component {
                 <View></View>
             );
         };
+        alert(JSON.stringify(this.props.navigation));
     }
     render() {
         return (
@@ -98,7 +92,7 @@ export default class Cakes extends React.Component {
     };
 
 }
-var {height, width} = Dimensions.get('window');
+var { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1
