@@ -72,7 +72,7 @@ export default class Cakes extends React.Component {
                 <View></View>
             );
         };
-        alert(JSON.stringify(this.props.navigation));
+        //alert(JSON.stringify(this.props.navigation));
     }
     render() {
         return (
