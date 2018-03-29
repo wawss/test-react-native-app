@@ -40,26 +40,6 @@ export default class Cart extends React.Component {
   render() {
     return (
       <View>
-      <View style={styles.container}>
-      <View style={[styles.columns, styles.checkbox]}>
-        <Ionicons
-          name='checkbox-blank-circle-outline'
-          size={21}
-          style={styles.checkboxStyles}/>
-      </View>
-      <View style={styles.columns}>
-        <Image source={require('../images/p-test.png')} style={styles.image}/>
-      </View>
-      <View style={[styles.columns, styles.cakeContext]}>
-        <View>
-          <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
-          <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
-          <Text style={styles.size}>大小:6寸</Text>
-        </View>
-       
-        <Text style={styles.price}>￥258</Text>
-      </View>
-    </View>
         <View style={styles.container}>
           <View style={[styles.columns, styles.checkbox]}>
             <Ionicons
@@ -76,10 +56,23 @@ export default class Cart extends React.Component {
               <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
               <Text style={styles.size}>大小:6寸</Text>
             </View>
-           
-            <Text style={styles.price}>￥258</Text>
+            <View style={styles.bottomContainer}>
+              <Text style={styles.price}>￥258</Text>
+              <View style={styles.numberContainer}>
+                <View style={styles.subtract}>
+                  <Text>-</Text>
+                </View>
+                <View style={styles.number}>
+                  <Text>1</Text>
+                </View>
+                <View style={styles.add}>
+                  <Text>+</Text>
+                </View>
+              </View>
+            </View>
           </View>
         </View>
+
       </View>
     );
   }
@@ -114,25 +107,54 @@ var styles = StyleSheet.create({
   cakeContext: {
     flexGrow: 1,
     paddingLeft: (deviceWidth * 0.02),
+    paddingRight: (deviceWidth * 0.02),
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between'
   },
   cakeName: {
     fontSize: setSpText(14),
-    color:'#363636'
+    color: '#363636'
   },
   cakeEnglishName: {
     fontSize: setSpText(14),
-    color:'#363636'
+    color: '#363636'
   },
-  size:{
-    color:'#aaaaaa',
+  size: {
+    color: '#aaaaaa',
     fontSize: setSpText(12),
-    marginTop: (deviceWidth * 0.02),
+    marginTop: (deviceWidth * 0.02)
   },
-  price:{
-    color:'#EE0000',
-    fontSize: setSpText(15),
+  price: {
+    color: '#EE0000',
+    fontSize: setSpText(15)
+  },
+  bottomContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  numberContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderWidth: 1,
+    borderColor: '#aaaaaa',
+  },
+  subtract:{
+    borderRightWidth: 1,
+    borderColor: '#aaaaaa',
+    paddingLeft:(deviceWidth * 0.025),
+    paddingRight:(deviceWidth * 0.025)
+  },
+  number:{
+    paddingLeft:(deviceWidth * 0.025),
+    paddingRight:(deviceWidth * 0.025)
+  },
+  add:{
+    borderLeftWidth: 1,
+    borderColor: '#aaaaaa',
+    paddingLeft:(deviceWidth * 0.025),
+    paddingRight:(deviceWidth * 0.025)
   }
 });
