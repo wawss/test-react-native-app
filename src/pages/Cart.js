@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image, TouchableHighlight,ScrollView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {activeColor, defaultColor, fontSize, iconSize, TabBarStyle} from "../config/TabBarConfig";
 import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
@@ -39,40 +39,221 @@ export default class Cart extends React.Component {
 
   render() {
     return (
-      <View>
-        <View style={styles.container}>
-          <View style={[styles.columns, styles.checkbox]}>
-            <Ionicons
-              name='checkbox-blank-circle-outline'
-              size={21}
-              style={styles.checkboxStyles}/>
-          </View>
-          <View style={styles.columns}>
-            <Image source={require('../images/p-test.png')} style={styles.image}/>
-          </View>
-          <View style={[styles.columns, styles.cakeContext]}>
-            <View>
-              <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
-              <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
-              <Text style={styles.size}>大小:6寸</Text>
-            </View>
-            <View style={styles.bottomContainer}>
-              <Text style={styles.price}>￥258</Text>
-              <View style={styles.numberContainer}>
-                <View style={styles.subtract}>
-                  <Text>-</Text>
+      <View style={styles.container}>
+        <View style={styles.list}>
+          <ScrollView>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
                 </View>
-                <View style={styles.number}>
-                  <Text>1</Text>
-                </View>
-                <View style={styles.add}>
-                  <Text>+</Text>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
                 </View>
               </View>
             </View>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={styles.items}>
+              <View style={[styles.columns, styles.checkbox]}>
+                <Ionicons
+                  name='checkbox-blank-circle-outline'
+                  size={21}
+                  style={styles.checkboxStyles}/>
+              </View>
+              <View style={styles.columns}>
+                <Image source={require('../images/p-test.png')} style={styles.image}/>
+              </View>
+              <View style={[styles.columns, styles.cakeContext]}>
+                <View>
+                  <Text style={styles.cakeName}>米奇系列（巧克力的浪漫）</Text>
+                  <Text style={styles.cakeEnglishName}>Mickey's Yoghurt Mousse</Text>
+                  <Text style={styles.size}>大小:6寸</Text>
+                </View>
+                <View style={styles.bottomContainer}>
+                  <Text style={styles.price}>￥258</Text>
+                  <View style={styles.numberContainer}>
+                    <View style={styles.subtract}>
+                      <Text>-</Text>
+                    </View>
+                    <View style={styles.number}>
+                      <Text>1</Text>
+                    </View>
+                    <View style={styles.add}>
+                      <Text>+</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </ScrollView>
+
+        </View>
+        <View style={styles.bottom}>
+          <View style={[styles.bottomColumns, styles.checkboxAllDiv]}>
+            <Ionicons
+              name='checkbox-blank-circle-outline'
+              size={23}
+              style={styles.checkboxAll}/>
+            <Text style={styles.checkboxText}>全选</Text>
+          </View>
+          <View style={[styles.bottomColumns, styles.totalDiv]}>
+            <Text style={styles.totalText}>金额:￥500.00</Text>
+          </View>
+          <View style={[styles.bottomColumns, styles.submitBotton]}>
+            <TouchableHighlight>
+              <Text style={styles.submitBottonText}>结算</Text>
+            </TouchableHighlight>
           </View>
         </View>
-
       </View>
     );
   }
@@ -80,6 +261,19 @@ export default class Cart extends React.Component {
 
 var styles = StyleSheet.create({
   container: {
+    flex: 1,
+    // backgroundColor: 'yellow',
+    justifyContent: 'space-between'
+  },
+  list: {
+    flex: 1,
+  },
+  bottom: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: 'white',
+  },
+  items: {
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: 'white',
@@ -139,22 +333,59 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     borderWidth: 1,
-    borderColor: '#aaaaaa',
+    borderColor: '#aaaaaa'
   },
-  subtract:{
+  subtract: {
     borderRightWidth: 1,
     borderColor: '#aaaaaa',
-    paddingLeft:(deviceWidth * 0.025),
-    paddingRight:(deviceWidth * 0.025)
+    paddingLeft: (deviceWidth * 0.025),
+    paddingRight: (deviceWidth * 0.025)
   },
-  number:{
-    paddingLeft:(deviceWidth * 0.025),
-    paddingRight:(deviceWidth * 0.025)
+  number: {
+    paddingLeft: (deviceWidth * 0.025),
+    paddingRight: (deviceWidth * 0.025)
   },
-  add:{
+  add: {
     borderLeftWidth: 1,
     borderColor: '#aaaaaa',
-    paddingLeft:(deviceWidth * 0.025),
-    paddingRight:(deviceWidth * 0.025)
+    paddingLeft: (deviceWidth * 0.025),
+    paddingRight: (deviceWidth * 0.025)
+  },
+  bottomColumns: {},
+  submitBotton: {
+    backgroundColor: '#f23030',
+    width: (deviceWidth * 0.3),
+    alignItems: 'center',
+    paddingTop: (deviceWidth * 0.045),
+    paddingBottom: (deviceWidth * 0.045)
+  },
+  submitBottonText: {
+    color: 'white',
+    fontSize: setSpText(17)
+  },
+  totalDiv: {
+    justifyContent: 'center',
+    flex: 1,
+    paddingLeft: (deviceWidth * 0.03),
+    borderTopWidth: 1,
+    borderTopColor: '#dedede'
+  },
+  totalText: {
+    fontSize: setSpText(15)
+  },
+  checkboxAllDiv: {
+    paddingLeft: (deviceWidth * 0.025),
+    paddingRight: (deviceWidth * 0.025),
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderTopWidth: 1,
+    borderTopColor: '#dedede'
+  },
+  checkboxAll: {
+    color: '#9a9ca5',
+    paddingRight: (deviceWidth * 0.01)
+  },
+  checkboxText: {
+    fontSize: setSpText(15)
   }
 });

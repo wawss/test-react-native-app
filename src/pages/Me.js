@@ -18,10 +18,16 @@ export default class Me extends React.Component {
   };
     render() {
       return (
-        <View>
+        <View style={styles.container}>
         <Text>我的</Text>
         </View>
       );
     }
   }
+  var styles = StyleSheet.create({
+       container:{
+         flex: 1,
+         backgroundColor:'red'
+       }
+  });
   
