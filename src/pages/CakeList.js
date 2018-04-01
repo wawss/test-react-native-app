@@ -15,7 +15,7 @@ import Cakes from "../components/Cakes";
 
 export default class CakeList extends React.Component {
   static navigationOptions = {
-    title: '迪士尼品牌蛋糕',
+    title: '客乐多蛋糕',
     headerStyle: {
       backgroundColor: '#E95098'
     },
