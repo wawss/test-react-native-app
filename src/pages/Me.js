@@ -1,9 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, StatusBar} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  StatusBar,
+  ScrollView,
+  TouchableHighlight
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MetIonicons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {activeColor, defaultColor, fontSize, iconSize, TabBarStyle} from "../config/TabBarConfig";
 import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
+import {NavigationActions} from 'react-navigation';
 
 export default class Me extends React.Component {
 
@@ -26,24 +35,77 @@ export default class Me extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <View style={styles.headImg}></View>
-        <View style={styles.rowMenu}>
-          <View style={[styles.column, styles.orderMenu]}>
-            <MetIonicons name='cart' size={22}/>
-            <Text>订单</Text>
+      <ScrollView>
+        <View style={styles.container}>
+          <View style={styles.headImgBox}>
+            <View style={styles.headImg}></View>
           </View>
-          <View style={[styles.column, styles.pointMenu]}>
-            <Text>积分</Text>
+          <View style={styles.columnMenu}>
+            <View style={[styles.column, styles.orderMenu]}>
+              <MetIonicons
+                name='reorder-horizontal'
+                size={24}
+                style={styles.columnMenuIcons}/>
+              <Text style={styles.columnMenuText}>订单</Text>
+            </View>
+            <View style={[styles.column, styles.couponMenu]}>
+              <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons}/>
+              <Text style={styles.columnMenuText}>优惠券</Text>
+            </View>
+            <View style={[styles.column, styles.addressMenu]}>
+              <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons}/>
+              <Text style={styles.columnMenuText}>收货地址</Text>
+            </View>
+            <View style={[styles.column, styles.pointMenu]}>
+              <MetIonicons name='bitcoin' size={24} style={styles.columnMenuIcons}/>
+              <Text style={styles.columnMenuText}>积分</Text>
+            </View>
           </View>
-          <View style={[styles.column, styles.couponMenu]}>
-            <Text>优惠券</Text>
+
+          <View style={styles.rowMenu}>
+            <TouchableHighlight
+              onPress={() => {
+              this
+                .props
+                .navigation
+                .dispatch(NavigationActions.navigate({routeName: 'updatePwd'}))
+            }} underlayColor={'#f2f2f2'}>
+              <View style={styles.row}>
+                <MetIonicons name='cellphone' size={22} style={styles.rowMenuIcons}/>
+                <View style={[styles.rowItems, styles.rowItemsOfFirst]}>
+                  <Text style={styles.rowMenuText}>绑定手机号</Text>
+                  <View style={styles.lastViewOfRowItems}>
+                    <Text style={styles.phoneText}>13800121300</Text>
+                    <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+                  </View>
+                </View>
+              </View>
+            </TouchableHighlight>
+            <View style={styles.row}>
+              <MetIonicons name='lock' size={22} style={styles.rowMenuIcons}/>
+              <View style={styles.rowItems}>
+                <Text style={styles.rowMenuText}>修改密码</Text>
+                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <MetIonicons name='note' size={22} style={styles.rowMenuIcons}/>
+              <View style={styles.rowItems}>
+                <Text style={styles.rowMenuText}>我的收藏</Text>
+                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+              </View>
+            </View>
+            <View style={styles.row}>
+              <MetIonicons name='help-box' size={22} style={styles.rowMenuIcons}/>
+              <View style={styles.rowItems}>
+                <Text style={styles.rowMenuText}>帮助中心</Text>
+                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+              </View>
+            </View>
           </View>
-          <View style={[styles.column, styles.addressMenu]}>
-            <Text>收货地址1</Text>
-          </View>
+
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -51,28 +113,83 @@ var styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  headImg: {
+  headImgBox: {
     height: (deviceWidth * 0.46),
-    backgroundColor: '#E95098'
+    backgroundColor: '#E95098',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  rowMenu: {
+  headImg: {
+    width: (deviceWidth * 0.2),
+    height: (deviceWidth * 0.2),
+    borderRadius: (deviceWidth * 0.1),
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  columnMenu: {
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   column: {
     flex: 1,
     alignItems: 'center',
+    paddingTop: (deviceWidth * 0.05),
+    paddingBottom: (deviceWidth * 0.05),
+    backgroundColor: 'white'
   },
-  orderMenu: {
-    backgroundColor: 'red'
+  columnMenuIcons: {
+    color: '#333333'
   },
-  pointMenu: {
-    backgroundColor: 'green'
+  orderMenu: {},
+  pointMenu: {},
+  couponMenu: {},
+  addressMenu: {},
+  columnMenuText: {
+    paddingTop: (deviceWidth * 0.02),
+    color: '#666666',
+    fontSize: setSpText(14)
   },
-  couponMenu: {
-    backgroundColor: 'black'
+  rowMenu: {
+    backgroundColor: 'white',
+    marginTop: (deviceWidth * 0.04)
   },
-  addressMenu: {
-    backgroundColor: 'yellow'
+  row: {
+    flexDirection: 'row',
+
+    alignItems: 'center'
+  },
+  rowMenuIcons: {
+    paddingLeft: (deviceWidth * 0.04),
+    paddingRight: (deviceWidth * 0.04),
+    color: '#e53488'
+  },
+  rowMenuText: {
+    color: '#333333',
+    fontSize: setSpText(14)
+  },
+  rowItems: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: '#eeeeee',
+    flex: 1,
+    paddingTop: (deviceWidth * 0.045),
+    paddingBottom: (deviceWidth * 0.045),
+    paddingRight: (deviceWidth * 0.02),
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  rowItemsOfFirst: {
+    borderTopWidth: 0
+  },
+  iconsArrowForward: {
+    color: '#dedede',
+    paddingLeft: (deviceWidth * 0.02)
+  },
+  lastViewOfRowItems: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  phoneText: {
+    color: '#999999'
   }
 });

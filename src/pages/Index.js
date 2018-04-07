@@ -4,7 +4,6 @@ import SwiperBanner from '../components/SwiperBanner';
 import Cakes from '../components/Cakes';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { activeColor, defaultColor, fontSize, iconSize, TabBarStyle } from "../config/TabBarConfig";
-import  dateformat  from "dateformat";
 
 
 export default class Home extends React.Component {
