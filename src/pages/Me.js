@@ -10,27 +10,27 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MetIonicons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {activeColor, defaultColor, fontSize, iconSize, TabBarStyle} from "../config/TabBarConfig";
-import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
-import {NavigationActions} from 'react-navigation';
+import { activeColor, defaultColor, fontSize, iconSize, TabBarStyle } from "../config/TabBarConfig";
+import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/ScreenUtil";
+import { NavigationActions } from 'react-navigation';
 
 export default class Me extends React.Component {
 
   static navigationOptions = {
     header: null,
-    tabBarIcon: ({focused, tintColor}) => {
+    tabBarIcon: ({ focused, tintColor }) => {
       return <Ionicons
         name='ios-contact'
         size={iconSize}
         color={focused
-        ? activeColor
-        : defaultColor}/>
+          ? activeColor
+          : defaultColor} />
     },
-    tabBarLabel: ({focused, tintColor}) => {
+    tabBarLabel: ({ focused, tintColor }) => {
       return <Text
         style={focused
-        ? TabBarStyle.activeMenuStyle
-        : TabBarStyle.defaultMenuStyle}>我的</Text>
+          ? TabBarStyle.activeMenuStyle
+          : TabBarStyle.defaultMenuStyle}>我的</Text>
     }
   };
   render() {
@@ -45,19 +45,19 @@ export default class Me extends React.Component {
               <MetIonicons
                 name='reorder-horizontal'
                 size={24}
-                style={styles.columnMenuIcons}/>
+                style={styles.columnMenuIcons} />
               <Text style={styles.columnMenuText}>订单</Text>
             </View>
             <View style={[styles.column, styles.couponMenu]}>
-              <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons}/>
+              <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons} />
               <Text style={styles.columnMenuText}>优惠券</Text>
             </View>
             <View style={[styles.column, styles.addressMenu]}>
-              <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons}/>
+              <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons} />
               <Text style={styles.columnMenuText}>收货地址</Text>
             </View>
             <View style={[styles.column, styles.pointMenu]}>
-              <MetIonicons name='bitcoin' size={24} style={styles.columnMenuIcons}/>
+              <MetIonicons name='bitcoin' size={24} style={styles.columnMenuIcons} />
               <Text style={styles.columnMenuText}>积分</Text>
             </View>
           </View>
@@ -65,41 +65,49 @@ export default class Me extends React.Component {
           <View style={styles.rowMenu}>
             <TouchableHighlight
               onPress={() => {
-              this
-                .props
-                .navigation
-                .dispatch(NavigationActions.navigate({routeName: 'updatePwd'}))
-            }} underlayColor={'#f2f2f2'}>
+                this
+                  .props
+                  .navigation
+                  .dispatch(NavigationActions.navigate({ routeName: 'bindPhone' }))
+              }} underlayColor={'#f2f2f2'}>
               <View style={styles.row}>
-                <MetIonicons name='cellphone' size={22} style={styles.rowMenuIcons}/>
+                <MetIonicons name='cellphone' size={22} style={styles.rowMenuIcons} />
                 <View style={[styles.rowItems, styles.rowItemsOfFirst]}>
                   <Text style={styles.rowMenuText}>绑定手机号</Text>
                   <View style={styles.lastViewOfRowItems}>
                     <Text style={styles.phoneText}>13800121300</Text>
-                    <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+                    <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward} />
                   </View>
                 </View>
               </View>
             </TouchableHighlight>
-            <View style={styles.row}>
-              <MetIonicons name='lock' size={22} style={styles.rowMenuIcons}/>
-              <View style={styles.rowItems}>
-                <Text style={styles.rowMenuText}>修改密码</Text>
-                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+            <TouchableHighlight
+              onPress={() => {
+                this
+                  .props
+                  .navigation
+                  .dispatch(NavigationActions.navigate({ routeName: 'updatePwd' }))
+              }} underlayColor={'#f2f2f2'}>
+              <View style={styles.row}>
+                <MetIonicons name='lock' size={22} style={styles.rowMenuIcons} />
+                <View style={styles.rowItems}>
+                  <Text style={styles.rowMenuText}>修改密码</Text>
+                  <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward} />
+                </View>
               </View>
-            </View>
+            </TouchableHighlight>
             <View style={styles.row}>
-              <MetIonicons name='note' size={22} style={styles.rowMenuIcons}/>
+              <MetIonicons name='note' size={22} style={styles.rowMenuIcons} />
               <View style={styles.rowItems}>
                 <Text style={styles.rowMenuText}>我的收藏</Text>
-                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward} />
               </View>
             </View>
             <View style={styles.row}>
-              <MetIonicons name='help-box' size={22} style={styles.rowMenuIcons}/>
+              <MetIonicons name='help-box' size={22} style={styles.rowMenuIcons} />
               <View style={styles.rowItems}>
                 <Text style={styles.rowMenuText}>帮助中心</Text>
-                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward}/>
+                <Ionicons name='ios-arrow-forward' size={22} style={styles.iconsArrowForward} />
               </View>
             </View>
           </View>

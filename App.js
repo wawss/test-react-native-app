@@ -3,6 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import Index from "./src/pages/Index";
 import CakeList from "./src/pages/CakeList";
 import UpdatePwd from "./src/pages/updatePwd";
+import BindPhone from "./src/pages/bindPhone";
 import CakeDetail from "./src/pages/CakeDetail";
 import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
@@ -44,5 +45,8 @@ export default StackNavigator({
   },
   updatePwd: {
     screen: UpdatePwd
+  },
+  bindPhone: {
+    screen: BindPhone
   }
 });
