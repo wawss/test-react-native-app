@@ -10,9 +10,9 @@ import {
     Dimensions,
     TouchableHighlight
 } from 'react-native';
-import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/ScreenUtil";
-import { getProducts } from "../data/Data";
-import { StackNavigator, NavigationActions } from 'react-navigation';
+import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
+import {getProducts} from "../data/Data";
+import {StackNavigator, NavigationActions} from 'react-navigation';
 
 export default class Cakes extends React.Component {
     constructor(props) {
@@ -23,13 +23,24 @@ export default class Cakes extends React.Component {
         getProducts((res) => {
             fastData = JSON.parse(res._bodyInit);
             //构建数组
+            if (fastData.list.length % 2 > 0) {
+                this
+                    .state
+                    .dataSource
+                    .unshift({
+                        name: '更多蛋糕',
+                        info: {
+                            englishName: '敬请期待'
+                        }
+                    });
+            }
             for (let cakeName in fastData.list) {
                 this
                     .state
                     .dataSource
-                    .push({ name: cakeName, info: fastData.list[cakeName] });
+                    .push({name: cakeName, info: fastData.list[cakeName]});
             }
-            this.state.dataSource = fastData.list;
+
         });
 
         this.itemStyle = (index) => {
@@ -40,27 +51,37 @@ export default class Cakes extends React.Component {
         this._onPressButton = (item) => {
             const navigateAction = NavigationActions.navigate({
                 routeName: 'cakeDetail',
-                params: { itemName: item.name },
+                params: {
+                    itemName: item.name
+                }
             });
-            this.props.navigation.dispatch(navigateAction);
+            this
+                .props
+                .navigation
+                .dispatch(navigateAction);
         };
-        this.renderItem = ({ item, index }) => {
+        this.renderItem = ({item, index}) => {
             return (
                 <TouchableHighlight
-                    underlayColor='red'
-                    onPress={() => { this._onPressButton(item) }}>
+                    onPress={() => {
+                    this._onPressButton(item)
+                }}>
                     <View
                         style={[
-                            styles.item, this.itemStyle(index)
-                        ]}>
+                        styles.item, this.itemStyle(index)
+                    ]}>
                         <Image
                             source={{
-                                uri: 'http://res.cakeland.com/item/' + item.name + '/w_200/' + item.info.ext.image[0]
-                            }}
-                            style={styles.itemImg} />
+                            uri: 'http://res.cakeland.com/item/' + item.name + '/w_200/' + item.info.ext.image[0]
+                        }}
+                            style={styles.itemImg}/>
                         <View style={styles.viewForItemName}>
-                            <Text style={styles.styleForText}>{item.name}</Text>
-                            <Text style={styles.styleForText}>{item.info.ext['英文名称']}</Text>
+                            <Text style={styles.styleForText}>{item
+                                    .name
+                                    .split('（')[0]}</Text>
+                            <Text style={styles.styleForText}>{'（' + item
+                                    .name
+                                    .split('（')[1]}</Text>
                         </View>
                     </View>
                 </TouchableHighlight>
@@ -92,7 +113,7 @@ export default class Cakes extends React.Component {
     };
 
 }
-var { height, width } = Dimensions.get('window');
+var {height, width} = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1
@@ -110,15 +131,16 @@ const styles = StyleSheet.create({
     },
     titleDesc: {
         color: '#686868',
-        fontSize: setSpText(15)
+        fontSize: 12
     },
     engTitleDesc: {
         color: '#686868',
-        fontSize: setSpText(12)
+        fontSize: 12
     },
     ListView: {
         paddingLeft: (deviceWidth * 0.06),
-        paddingRight: (deviceWidth * 0.06)
+        paddingRight: (deviceWidth * 0.06),
+        paddingTop: (deviceWidth * 0.02),
     },
     item: {
         'display': 'flex',
@@ -126,17 +148,21 @@ const styles = StyleSheet.create({
         width: (deviceWidth * 0.44),
         justifyContent: 'center',
         alignItems: 'center',
-        paddingTop: (deviceWidth * 0.04)
+        
     },
     viewForItemName: {
         width: (deviceWidth * 0.44),
-        height: (deviceWidth * 0.15),
+        paddingTop: (deviceWidth * 0.02),
+        paddingBottom: (deviceWidth * 0.02),
         justifyContent: 'center',
         alignItems: 'center'
     },
     styleForText: {
         color: '#686868',
-        fontSize: setSpText(14)
+        fontSize: 13
+    },
+    englishName: {
+        alignItems: 'center'
     },
     itemOdd: {
         // marginRight: (deviceWidth * 0.02)

@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 import {deviceWidth, deviceHeight,getSizeOfImage} from "../tools/ScreenUtil";
 
 export default class SwiperBanner extends React.Component {
+
     render() {
         return (
             <View style={styles.wrapper}>

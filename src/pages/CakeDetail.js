@@ -9,6 +9,7 @@ export default class CakeDetail extends React.Component {
   static navigationOptions = ({navigation}) => {
     const {params} = navigation.state;
     return {
+      header: null,
       title: params
         ? params.itemName
         : ''
@@ -64,7 +65,7 @@ export default class CakeDetail extends React.Component {
                 ? this.state.itemInfo.ext['产品描述']
                 : ''}</Text>
             <Text style={styles.price}>{this.state.itemInfo.size
-                ? '￥' + this.state.itemInfo.size[0].price
+                ? '¥' + this.state.itemInfo.size[0].price
                 : 0}
             </Text>
           </View>
@@ -162,7 +163,7 @@ var styles = StyleSheet.create({
   },
   textName: {
     color: '#363636',
-    fontSize: setSpText(18),
+    fontSize: 18,
     paddingTop: (deviceWidth * 0.03)
   },
   englishName: {
@@ -171,13 +172,12 @@ var styles = StyleSheet.create({
   },
   desc: {
     color: '#aaaaaa',
-    fontSize: setSpText(12),
-    lineHeight: 15,
+    fontSize: 15,
     paddingBottom: (deviceWidth * 0.03)
   },
   price: {
     color: '#EE0000',
-    fontSize: setSpText(20),
+    fontSize: 20,
     fontWeight: 'bold'
   },
   msgColumn: {
