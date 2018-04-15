@@ -14,7 +14,7 @@
  PixelRatio.get() === 3          iPhone 6 plus , xxhdpi Android 设备 (480 dpi)
  PixelRatio.get() === 3.5        Nexus 6       */
 
-import {Dimensions, PixelRatio} from 'react-native';
+import {Dimensions, PixelRatio, Platform} from 'react-native';
 
 export const deviceWidth = Dimensions
     .get('window')
@@ -45,6 +45,9 @@ export function scaleSize(size) {
     size = Math.round(size * scale + 0.5);
     return size / defaultPixel;
 }
+export function getOS() {
+    return Platform.OS.toLowerCase();
+}
 
 //图片等比例就宽和高
 export function getSizeOfImage(imgae, size, isHeight) {
@@ -55,7 +58,7 @@ export function getSizeOfImage(imgae, size, isHeight) {
         return Math.round(size / s);
     } else if (s < 1) {
         return Math.round((1 / s) * size);
-    }else if(s==1){
+    } else if (s == 1) {
         return size;
     }
 }

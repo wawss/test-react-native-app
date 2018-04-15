@@ -1,20 +1,23 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView
+} from 'react-native';
 import Swiper from 'react-native-swiper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
 import {getProductDetailByName} from "../data/Data";
+import Header from "../components/Header";
 
 export default class CakeDetail extends React.Component {
   static navigationOptions = ({navigation}) => {
     const {params} = navigation.state;
-    return {
-      header: null,
-      title: params
-        ? params.itemName
-        : ''
-    }
+    return {header: null}
   }
+
   constructor(props) {
     super(props);
     const {params} = this.props.navigation.state;
@@ -36,72 +39,75 @@ export default class CakeDetail extends React.Component {
 
   render() {
     return (
-      <ScrollView>
-        <View style={styles.body}>
-          <View style={styles.wrapper}>
-            <Swiper autoplay={true}>
-              {this
-                .state
-                .itemImages
-                .map((imgName, i) => {
-                  return (
-                    <View style={styles.slide1} key={i}>
-                      <Image
-                        source={{
-                        uri: 'http://res.cakeland.com/item/' + this.state.itemName + '/' + imgName
-                      }}
-                        style={styles.banner}></Image>
-                    </View>
-                  )
-                })}
-            </Swiper>
+      <View>
+        <Header navigation={this.props.navigation} title={this.state.itemName} />
+        <ScrollView styles={{backgroundColor:'red'}}>
+          <View style={styles.body}>
+            <View style={styles.wrapper}>
+              <Swiper autoplay={true}>
+                {this
+                  .state
+                  .itemImages
+                  .map((imgName, i) => {
+                    return (
+                      <View style={styles.slide1} key={i}>
+                        <Image
+                          source={{
+                          uri: 'http://res.cakeland.com/item/' + this.state.itemName + '/' + imgName
+                        }}
+                          style={styles.banner}></Image>
+                      </View>
+                    )
+                  })}
+              </Swiper>
+            </View>
+            <View style={[styles.textBox, styles.column]}>
+              <Text style={styles.textName}>{this.state.itemName}</Text>
+              <Text style={styles.englishName}>{this.state.itemInfo.ext
+                  ? this.state.itemInfo.ext['英文名称']
+                  : ''}</Text>
+              <Text style={styles.desc}>{this.state.itemInfo.ext
+                  ? this.state.itemInfo.ext['产品描述']
+                  : ''}</Text>
+              <Text style={styles.price}>{this.state.itemInfo.size
+                  ? '¥' + this.state.itemInfo.size[0].price
+                  : 0}
+              </Text>
+            </View>
+            <View style={[styles.column, styles.size]}>
+              <View style={styles.sizeColumn}>
+                <Text style={styles.sizeTitle}>尺寸</Text>
+              </View>
+              <View style={[styles.sizeColumn, styles.chooseSize]}>
+                <Text>已选6寸</Text>
+              </View>
+              <View style={styles.sizeColumn}>
+                <Ionicons name='ios-arrow-forward' size={25}/>
+              </View>
+            </View>
+            <View style={styles.column}>
+              <View style={styles.msgColumn}>
+                <Text style={[styles.msg, styles.msgTitle]}>温馨提示：</Text>
+                <Text style={styles.msg}>1、为确保蛋糕新鲜制作，请提前24小时订购</Text>
+                <Text style={styles.msg}>2、请冷藏保存，建议当天食用完毕</Text>
+                <Text style={styles.msg}>3、蛋糕0-4℃冷藏保存，离开冷藏勿超过2小时</Text>
+              </View>
+              <View style={styles.msgColumn}>
+                <Text style={[styles.msg, styles.msgTitle]}>配送服务：</Text>
+                <Text style={[styles.msg, styles.msgTitle]}>时间：10:00-20:00</Text>
+                <Image
+                  source={{
+                  uri: 'http://res.cakeland.com/images/map.jpg'
+                }}
+                  style={styles.mapImage}></Image>
+                <Text style={styles.msg}>1、A20外环以内地区：免费配送</Text>
+                <Text style={styles.msg}>2、A20外环以外、郊环以内地区，凡使用抵扣券码购买的订单均加收20元配送费</Text>
+                <Text style={styles.msg}>3、其他区域范围暂不做配送</Text>
+              </View>
+            </View>
           </View>
-          <View style={[styles.textBox, styles.column]}>
-            <Text style={styles.textName}>{this.state.itemName}</Text>
-            <Text style={styles.englishName}>{this.state.itemInfo.ext
-                ? this.state.itemInfo.ext['英文名称']
-                : ''}</Text>
-            <Text style={styles.desc}>{this.state.itemInfo.ext
-                ? this.state.itemInfo.ext['产品描述']
-                : ''}</Text>
-            <Text style={styles.price}>{this.state.itemInfo.size
-                ? '¥' + this.state.itemInfo.size[0].price
-                : 0}
-            </Text>
-          </View>
-          <View style={[styles.column, styles.size]}>
-            <View style={styles.sizeColumn}>
-              <Text style={styles.sizeTitle}>尺寸</Text>
-            </View>
-            <View style={[styles.sizeColumn, styles.chooseSize]}>
-              <Text>已选6寸</Text>
-            </View>
-            <View style={styles.sizeColumn}>
-              <Ionicons name='ios-arrow-forward' size={25}/>
-            </View>
-          </View>
-          <View style={styles.column}>
-            <View style={styles.msgColumn}>
-              <Text style={[styles.msg, styles.msgTitle]}>温馨提示：</Text>
-              <Text style={styles.msg}>1、为确保蛋糕新鲜制作，请提前24小时订购</Text>
-              <Text style={styles.msg}>2、请冷藏保存，建议当天食用完毕</Text>
-              <Text style={styles.msg}>3、蛋糕0-4℃冷藏保存，离开冷藏勿超过2小时</Text>
-            </View>
-            <View style={styles.msgColumn}>
-              <Text style={[styles.msg, styles.msgTitle]}>配送服务：</Text>
-              <Text style={[styles.msg, styles.msgTitle]}>时间：10:00-20:00</Text>
-              <Image
-                source={{
-                uri: 'http://res.cakeland.com/images/map.jpg'
-              }}
-                style={styles.mapImage}></Image>
-              <Text style={styles.msg}>1、A20外环以内地区：免费配送</Text>
-              <Text style={styles.msg}>2、A20外环以外、郊环以内地区，凡使用抵扣券码购买的订单均加收20元配送费</Text>
-              <Text style={styles.msg}>3、其他区域范围暂不做配送</Text>
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -111,8 +117,9 @@ const imageSize = {
   height: 536
 };
 var styles = StyleSheet.create({
+
   body: {
-    // backgroundColor: 'white'
+    flex:1
   },
   wrapper: {
     width: deviceWidth,

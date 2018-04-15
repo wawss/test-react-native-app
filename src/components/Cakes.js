@@ -140,7 +140,6 @@ const styles = StyleSheet.create({
     ListView: {
         paddingLeft: (deviceWidth * 0.06),
         paddingRight: (deviceWidth * 0.06),
-        paddingTop: (deviceWidth * 0.02),
     },
     item: {
         'display': 'flex',

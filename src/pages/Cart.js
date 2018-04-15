@@ -1,19 +1,21 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image, TouchableHighlight,ScrollView} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TouchableHighlight,
+  ScrollView
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {activeColor, defaultColor, fontSize, iconSize, TabBarStyle} from "../config/TabBarConfig";
 import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
+import Header from "../components/Header";
 
 export default class Cart extends React.Component {
 
   static navigationOptions = {
-    title: '购物车',
-    headerStyle: {
-      backgroundColor: '#E95098'
-    },
-    headerTitleStyle: {
-      color: 'white'
-    },
+    header: null,
     tabBarIcon: ({focused, tintColor}) => {
       return <Ionicons
         name='cart'
@@ -40,6 +42,7 @@ export default class Cart extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Header navigation={this.props.navigation} title={'购物车'}/>
         <View style={styles.list}>
           <ScrollView>
             <View style={styles.items}>
@@ -262,16 +265,15 @@ export default class Cart extends React.Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'yellow',
     justifyContent: 'space-between'
   },
   list: {
-    flex: 1,
+    flex: 1
   },
   bottom: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   items: {
     display: 'flex',
@@ -307,21 +309,21 @@ var styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   cakeName: {
-    fontSize: setSpText(14),
+    fontSize: 14,
     color: '#363636'
   },
   cakeEnglishName: {
-    fontSize: setSpText(14),
+    fontSize: 14,
     color: '#363636'
   },
   size: {
     color: '#aaaaaa',
-    fontSize: setSpText(12),
+    fontSize: 12,
     marginTop: (deviceWidth * 0.02)
   },
   price: {
     color: '#EE0000',
-    fontSize: setSpText(15)
+    fontSize: 15
   },
   bottomContainer: {
     display: 'flex',
@@ -361,7 +363,7 @@ var styles = StyleSheet.create({
   },
   submitBottonText: {
     color: 'white',
-    fontSize: setSpText(17)
+    fontSize: 17
   },
   totalDiv: {
     justifyContent: 'center',
@@ -371,7 +373,7 @@ var styles = StyleSheet.create({
     borderTopColor: '#dedede'
   },
   totalText: {
-    fontSize: setSpText(15)
+    fontSize: 15
   },
   checkboxAllDiv: {
     paddingLeft: (deviceWidth * 0.025),
@@ -386,6 +388,6 @@ var styles = StyleSheet.create({
     paddingRight: (deviceWidth * 0.01)
   },
   checkboxText: {
-    fontSize: setSpText(15)
+    fontSize: 15
   }
 });

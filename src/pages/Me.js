@@ -155,7 +155,7 @@ var styles = StyleSheet.create({
   columnMenuText: {
     paddingTop: (deviceWidth * 0.02),
     color: '#666666',
-    fontSize: setSpText(14)
+    fontSize: 15
   },
   rowMenu: {
     backgroundColor: 'white',
@@ -173,7 +173,7 @@ var styles = StyleSheet.create({
   },
   rowMenuText: {
     color: '#333333',
-    fontSize: setSpText(14)
+    fontSize: 15
   },
   rowItems: {
     flexDirection: 'row',
