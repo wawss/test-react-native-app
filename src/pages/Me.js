@@ -49,8 +49,18 @@ export default class Me extends React.Component {
               <Text style={styles.columnMenuText}>订单</Text>
             </View>
             <View style={[styles.column, styles.couponMenu]}>
-              <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons} />
-              <Text style={styles.columnMenuText}>优惠券</Text>
+              <TouchableHighlight
+                onPress={() => {
+                  this
+                    .props
+                    .navigation
+                    .dispatch(NavigationActions.navigate({ routeName: 'myCards' }))
+                }} underlayColor={'#f2f2f2'}>
+                <View>
+                  <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons} />
+                  <Text style={styles.columnMenuText}>卡券</Text>
+                </View>
+              </TouchableHighlight>
             </View>
             <View style={[styles.column, styles.addressMenu]}>
               <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons} />

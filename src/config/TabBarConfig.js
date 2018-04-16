@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 export const activeColor = '#E95098';
 export const defaultColor = '#686868';
@@ -19,7 +19,7 @@ export const tabBarOptions = {
     indicatorStyle: {
         backgroundColor: 'white', //for android,
     },
-    tabStyle: {}
+    tabStyle: {},
 }
 
 export const TabBarStyle = StyleSheet.create({

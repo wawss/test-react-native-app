@@ -22,13 +22,13 @@ export default class UpdatePwd extends React.Component {
                 <Header navigation={this.props.navigation} title={'修改密码'}/>
 
                 <View>
-                    <TextInput style={styles.inputStyle} placeholder={'原密码'}></TextInput>
+                    <TextInput style={styles.inputStyle} placeholder={'原密码'} underlineColorAndroid={'transparent'}></TextInput>
                 </View>
                 <View>
-                    <TextInput style={styles.inputStyle} placeholder={'新密码'}></TextInput>
+                    <TextInput style={styles.inputStyle} placeholder={'新密码'} underlineColorAndroid={'transparent'}></TextInput>
                 </View>
                 <View>
-                    <TextInput style={styles.inputStyle} placeholder={'确认新密码'}></TextInput>
+                    <TextInput style={styles.inputStyle} placeholder={'确认新密码'} underlineColorAndroid={'transparent'}></TextInput>
                 </View>
                 <View style={styles.buttonStyle}>
                     <TouchableWithoutFeedback>

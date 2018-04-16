@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Index from "./src/pages/Index";
 import CakeList from "./src/pages/CakeList";
 import UpdatePwd from "./src/pages/updatePwd";
@@ -7,8 +7,9 @@ import BindPhone from "./src/pages/bindPhone";
 import CakeDetail from "./src/pages/CakeDetail";
 import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
-import {TabNavigator, StackNavigator} from 'react-navigation';
-import {deviceWidth, deviceHeight, setSpText} from "./src/tools/ScreenUtil";
+import MyCards from "./src/pages/MyCards";
+import { TabNavigator, StackNavigator } from 'react-navigation';
+import { deviceWidth, deviceHeight, setSpText } from "./src/tools/ScreenUtil";
 import {
   activeColor,
   defaultColor,
@@ -32,9 +33,11 @@ const TabNav = TabNavigator({
     screen: Me
   }
 }, {
-  tabBarPosition: 'bottom',
-  tabBarOptions: tabBarOptions
-});
+    tabBarPosition: 'bottom',
+    animationEnabled:false,
+    swipeEnabled: false,//不允许tab左右滑动切换页面
+    tabBarOptions: tabBarOptions
+  });
 
 export default StackNavigator({
   tabNav: {
@@ -48,5 +51,10 @@ export default StackNavigator({
   },
   bindPhone: {
     screen: BindPhone
+  },
+  myCards: {
+    screen: MyCards
   }
-});
+}, {
+    mode: 'card'
+  });

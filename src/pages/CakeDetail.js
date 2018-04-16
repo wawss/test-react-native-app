@@ -8,19 +8,19 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {deviceWidth, deviceHeight, getSizeOfImage, setSpText} from "../tools/ScreenUtil";
-import {getProductDetailByName} from "../data/Data";
+import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/ScreenUtil";
+import { getProductDetailByName } from "../data/Data";
 import Header from "../components/Header";
 
 export default class CakeDetail extends React.Component {
-  static navigationOptions = ({navigation}) => {
-    const {params} = navigation.state;
-    return {header: null}
+  static navigationOptions = ({ navigation }) => {
+    const { params } = navigation.state;
+    return { header: null }
   }
 
   constructor(props) {
     super(props);
-    const {params} = this.props.navigation.state;
+    const { params } = this.props.navigation.state;
     this.state = {
       itemName: params.itemName,
       itemInfo: {},
@@ -31,7 +31,7 @@ export default class CakeDetail extends React.Component {
       this.state.itemInfo = resData.data;
       this.state.itemImages = resData.data.ext.image;
       this.setState(prev => {
-        return {itemInfo: resData.data, itemImages: resData.data.ext.image}
+        return { itemInfo: resData.data, itemImages: resData.data.ext.image }
       });
     });
 
@@ -39,10 +39,10 @@ export default class CakeDetail extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <Header navigation={this.props.navigation} title={this.state.itemName} />
-        <ScrollView styles={{backgroundColor:'red'}}>
-          <View style={styles.body}>
+        <View style={styles.body}>
+          <ScrollView>
             <View style={styles.wrapper}>
               <Swiper autoplay={true}>
                 {this
@@ -53,8 +53,8 @@ export default class CakeDetail extends React.Component {
                       <View style={styles.slide1} key={i}>
                         <Image
                           source={{
-                          uri: 'http://res.cakeland.com/item/' + this.state.itemName + '/' + imgName
-                        }}
+                            uri: 'http://res.cakeland.com/item/' + this.state.itemName + '/' + imgName
+                          }}
                           style={styles.banner}></Image>
                       </View>
                     )
@@ -64,14 +64,14 @@ export default class CakeDetail extends React.Component {
             <View style={[styles.textBox, styles.column]}>
               <Text style={styles.textName}>{this.state.itemName}</Text>
               <Text style={styles.englishName}>{this.state.itemInfo.ext
-                  ? this.state.itemInfo.ext['英文名称']
-                  : ''}</Text>
+                ? this.state.itemInfo.ext['英文名称']
+                : ''}</Text>
               <Text style={styles.desc}>{this.state.itemInfo.ext
-                  ? this.state.itemInfo.ext['产品描述']
-                  : ''}</Text>
+                ? this.state.itemInfo.ext['产品描述']
+                : ''}</Text>
               <Text style={styles.price}>{this.state.itemInfo.size
-                  ? '¥' + this.state.itemInfo.size[0].price
-                  : 0}
+                ? '¥' + this.state.itemInfo.size[0].price
+                : 0}
               </Text>
             </View>
             <View style={[styles.column, styles.size]}>
@@ -82,7 +82,7 @@ export default class CakeDetail extends React.Component {
                 <Text>已选6寸</Text>
               </View>
               <View style={styles.sizeColumn}>
-                <Ionicons name='ios-arrow-forward' size={25}/>
+                <Ionicons name='ios-arrow-forward' size={25} />
               </View>
             </View>
             <View style={styles.column}>
@@ -97,16 +97,16 @@ export default class CakeDetail extends React.Component {
                 <Text style={[styles.msg, styles.msgTitle]}>时间：10:00-20:00</Text>
                 <Image
                   source={{
-                  uri: 'http://res.cakeland.com/images/map.jpg'
-                }}
+                    uri: 'http://res.cakeland.com/images/map.jpg'
+                  }}
                   style={styles.mapImage}></Image>
                 <Text style={styles.msg}>1、A20外环以内地区：免费配送</Text>
                 <Text style={styles.msg}>2、A20外环以外、郊环以内地区，凡使用抵扣券码购买的订单均加收20元配送费</Text>
                 <Text style={styles.msg}>3、其他区域范围暂不做配送</Text>
               </View>
             </View>
-          </View>
-        </ScrollView>
+          </ScrollView>
+        </View>
       </View>
     );
   }
@@ -119,7 +119,7 @@ const imageSize = {
 var styles = StyleSheet.create({
 
   body: {
-    flex:1
+    flex: 1
   },
   wrapper: {
     width: deviceWidth,

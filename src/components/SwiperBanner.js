@@ -10,7 +10,7 @@ export default class SwiperBanner extends React.Component {
             <View style={styles.wrapper}>
                 <Swiper>
                     <View style={styles.slide1}>
-                        <Image source={require('../images/b1.png')} style={styles.banner}></Image>
+                        <Image source={require('../images/b1.png')} width={100} height={100} style={styles.banner}></Image>
                     </View>
                     <View style={styles.slide2}>
                         <Image source={require('../images/b2.png')} style={styles.banner}></Image>
