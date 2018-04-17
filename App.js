@@ -8,6 +8,10 @@ import CakeDetail from "./src/pages/CakeDetail";
 import Cart from "./src/pages/Cart";
 import Me from "./src/pages/Me";
 import MyCards from "./src/pages/MyCards";
+import MyOrders from "./src/pages/MyOrders";
+import MyAddress from "./src/pages/MyAddress";
+import MyIntegral from "./src/pages/MyIntegral";
+
 import { TabNavigator, StackNavigator } from 'react-navigation';
 import { deviceWidth, deviceHeight, setSpText } from "./src/tools/ScreenUtil";
 import {
@@ -34,7 +38,7 @@ const TabNav = TabNavigator({
   }
 }, {
     tabBarPosition: 'bottom',
-    animationEnabled:false,
+    animationEnabled: false,
     swipeEnabled: false,//不允许tab左右滑动切换页面
     tabBarOptions: tabBarOptions
   });
@@ -54,7 +58,16 @@ export default StackNavigator({
   },
   myCards: {
     screen: MyCards
-  }
+  },
+  myOrders: {
+    screen: MyOrders
+  },
+  myAddress: {
+    screen: MyAddress
+  },
+  myIntegral: {
+    screen: MyIntegral
+  },
 }, {
     mode: 'card'
   });

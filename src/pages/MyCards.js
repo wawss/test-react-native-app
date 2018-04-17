@@ -23,7 +23,7 @@ constructor(props) {
     render()   {    
         return (
             <View  style={{ flex: 1 }}>
-                <Header navigation={this.props.navigation} title={'卡券'} />
+                <Header navigation={this.props.navigation} title={'我的卡券'} />
             <ScrollView>
                 <View style={styles.cardContainer}>
                      <View style={[styles.cardItem,styles.discountCard]}>

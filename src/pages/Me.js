@@ -15,7 +15,6 @@ import { deviceWidth, deviceHeight, getSizeOfImage, setSpText } from "../tools/S
 import { NavigationActions } from 'react-navigation';
 
 export default class Me extends React.Component {
-
   static navigationOptions = {
     header: null,
     tabBarIcon: ({ focused, tintColor }) => {
@@ -31,8 +30,19 @@ export default class Me extends React.Component {
         style={focused
           ? TabBarStyle.activeMenuStyle
           : TabBarStyle.defaultMenuStyle}>我的</Text>
-    }
+    },
   };
+  constructor(props) {
+    super(props);
+    this.onPress = (routeName) => {
+      if (routeName) {
+        this
+          .props
+          .navigation
+          .dispatch(NavigationActions.navigate({ routeName: routeName }))
+      }
+    }
+  }
   render() {
     return (
       <ScrollView>
@@ -41,35 +51,34 @@ export default class Me extends React.Component {
             <View style={styles.headImg}></View>
           </View>
           <View style={styles.columnMenu}>
-            <View style={[styles.column, styles.orderMenu]}>
-              <MetIonicons
-                name='reorder-horizontal'
-                size={24}
-                style={styles.columnMenuIcons} />
-              <Text style={styles.columnMenuText}>订单</Text>
-            </View>
-            <View style={[styles.column, styles.couponMenu]}>
-              <TouchableHighlight
-                onPress={() => {
-                  this
-                    .props
-                    .navigation
-                    .dispatch(NavigationActions.navigate({ routeName: 'myCards' }))
-                }} underlayColor={'#f2f2f2'}>
-                <View>
-                  <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons} />
-                  <Text style={styles.columnMenuText}>卡券</Text>
-                </View>
-              </TouchableHighlight>
-            </View>
-            <View style={[styles.column, styles.addressMenu]}>
-              <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons} />
-              <Text style={styles.columnMenuText}>收货地址</Text>
-            </View>
-            <View style={[styles.column, styles.pointMenu]}>
-              <MetIonicons name='bitcoin' size={24} style={styles.columnMenuIcons} />
-              <Text style={styles.columnMenuText}>积分</Text>
-            </View>
+            <TouchableHighlight style={styles.column} onPress={this.onPress.bind(this, 'myOrders')} underlayColor={'#f2f2f2'}>
+              <View style={[styles.orderMenu, styles.menuContainer]}>
+                <MetIonicons name='reorder-horizontal' size={24} style={styles.columnMenuIcons} />
+                <Text style={styles.columnMenuText}>订单</Text>
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={styles.column} onPress={this.onPress.bind(this, 'myCards')} underlayColor={'#f2f2f2'}>
+              <View style={[styles.couponMenu, styles.menuContainer]}>
+                <MetIonicons name='credit-card' size={24} style={styles.columnMenuIcons} />
+                <Text style={styles.columnMenuText}>卡券</Text>
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={styles.column}  onPress={this.onPress.bind(this, 'myAddress')} underlayColor={'#f2f2f2'}>
+              <View style={[styles.addressMenu, styles.menuContainer]}>
+                <MetIonicons name='map-marker' size={24} style={styles.columnMenuIcons} />
+                <Text style={styles.columnMenuText}>收货地址</Text>
+              </View>
+            </TouchableHighlight>
+
+            <TouchableHighlight style={styles.column}  onPress={this.onPress.bind(this, 'myIntegral')} underlayColor={'#f2f2f2'}>
+              <View style={[styles.pointMenu, styles.menuContainer]}>
+                <MetIonicons name='bitcoin' size={24} style={styles.columnMenuIcons} />
+                <Text style={styles.columnMenuText}>积分</Text>
+              </View>
+            </TouchableHighlight>
+
           </View>
 
           <View style={styles.rowMenu}>
@@ -150,10 +159,12 @@ var styles = StyleSheet.create({
   },
   column: {
     flex: 1,
-    alignItems: 'center',
     paddingTop: (deviceWidth * 0.05),
     paddingBottom: (deviceWidth * 0.05),
     backgroundColor: 'white'
+  },
+  menuContainer: {
+    alignItems: 'center'
   },
   columnMenuIcons: {
     color: '#333333'
